@@ -9,29 +9,7 @@
 #include <windows.h>
 #include <shlobj.h> 
 
-#pragma comment(lib, "shell32.lib")
 
-HRESULT getMyDocumentPath(std::string& pathUserData, std::string& pathLogs, std::string& pathSettings) {
-
-    CHAR my_documents[MAX_PATH];
-    HRESULT result = SHGetFolderPathA(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, my_documents);
-
-    if (result != S_OK)
-    {
-        std::cout << "Error: " << result << "\n";
-    }
-    else
-    {
-        pathUserData = std::string(my_documents);
-    }
-
-    //std::cout << "User path: " << pathUserData << "\n";
-
-    pathUserData = pathUserData + "\\AssessMeControl";
-    pathLogs = pathUserData + "\\Logs";
-    pathSettings = pathUserData + "\\Settings";
-    return result;
-}
 
 std::string getCurrentDirectoryOnWindows()
 {
